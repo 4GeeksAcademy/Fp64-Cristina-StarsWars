@@ -12,19 +12,52 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			personajes: [],
+			vehiculos: [],
+			planetas: [],
+
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+			obtenerPersonajes: () => {
+				fetch("https://www.swapi.tech/api/people")
+					.then(res => res.json())
+					.then(data => setStore({personajes:data.results}))
+					.catch(err => console.error(err)) 
 			},
+			obtenerVehiculos: () => {
+						fetch("https://www.swapi.tech/api/vehicles")
+							.then(res => res.json())
+							.then(data => setStore({vehiculos:data.results}))
+							.catch(err => console.error(err))
+			},
+			obtenerPlanetas: () => {
+				fetch("https://www.swapi.tech/api/planets")
+					.then(res => res.json())
+					.then(data => setStore({planetas:data.results}))
+					.catch(err => console.error(err))
+				},
+			
+			obtenerFavorito: (name) => {
+					const store = getStore();
+					getStore ({...store,listafavoritos: [store.listafavoritos, name]})
+
+					},
+
+			borrarFavorito: (borrar) => {
+				const store = getStore();
+				const listafavoritos = store.listafavoritos.filet()
+				setStore({ ...store,listafavoritos })
+			},
+
+			// Use getActions to call a function within a fuction
+			
 			loadSomeData: () => {
 				/**
 					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
 			},
-			changeColor: (index, color) => {
+			changeColor: (color) => {
 				//get the store
 				const store = getStore();
 
