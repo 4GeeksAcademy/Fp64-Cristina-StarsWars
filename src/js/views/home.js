@@ -3,11 +3,11 @@ import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import { Context } from "../store/appContext";
 import { CardPersonajes } from "../component/cardPersonajes";
+import { CardVehiculos } from "../component/cardVehiculos";
 import { Cardplanetas } from "../component/cardPlanetas";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context)
-	console.log(store.personajes)
 	return (
 		<div className="text-center mt-5">
 			<h1>Personajes</h1>

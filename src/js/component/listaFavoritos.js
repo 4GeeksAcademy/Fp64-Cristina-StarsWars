@@ -1,23 +1,18 @@
-import React, { useState } from 'react';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { Context } from '../store/appContext';
+
+
 
 
 
 const listaFavoritos = () => {
-  const [store, setStore] = useState({ listaFavoritos: [] });
+  const {store, actions} = useContext(Context);
   const [inputValue, setInputValue] = useState('');
 
-  const obtenerFavorito = () => {
-    if (inputValue.trim()) {
-      setStore((prevStore) => ({
-        ...prevStore,
-        listaFavoritos: [...prevStore.listaFavoritos, inputValue]
-      }));
-      setInputValue('');
-    }
-  };
 
-  const borrarFavorito = (index) => {
+
+  const borrarFavorito = () => {
+    const {store, actions} = useContext(Context)
     setStore((prevStore) => ({
       ...prevStore,
       listaFavoritos: prevStore.listaFavoritos.filter((_, i) => i !== index)
@@ -33,12 +28,12 @@ const listaFavoritos = () => {
         onChange={(e) => setInputValue(e.target.value)}
         placeholder="Añadir nuevo favorito"
       />
-      <button onClick={addFavorite}>❤️</button>
       <ul>
-        {store.listaFavoritos.map((item, index) => (
+        {store.listafavoritos?.map((item, index) => (
           <li key={index}>
             {item}
-            <button onClick={() => borrarFavoritos(index)}>🗑️</button>
+            
+            
           </li>
         ))}
       </ul>

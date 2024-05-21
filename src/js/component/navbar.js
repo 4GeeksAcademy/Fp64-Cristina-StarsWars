@@ -11,14 +11,14 @@ export const Navbar = () => {
 			</Link>
 			<div className="ml-auto">
 				<div className="dropdown">
-				<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+				<button className= "btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 					Favoritos {store.listafavoritos.length}
 					</button>
 				<ul className="dropdown-menu">
 					{store.listafavoritos.map((favorito) => {
 						return <li className="dropdown-item">
-							<span>favorito</span>
-							<button type="button" className="btn btn-outline-light" onClick={() => borrarFavoritos(index)}>🗑️</button>
+							<span>{favorito}</span>
+							<button onClick={() => actions.borrarFavorito(favorito)}>🗑️</button>
 						</li>
 					})}
 				</ul>

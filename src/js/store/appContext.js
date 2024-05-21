@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import getState from "./flux.js";
-import listaFavoritos from './components/listaFavoritos';
 
 // Don't change, here is where we initialize our context, by default it's just going to be null.
 export const Context = React.createContext(null);
@@ -38,14 +37,6 @@ const injectContext = PassedComponent => {
 	};
 	return StoreWrapper;
 
-	function App() {
-		return (
-		  <div className="App">
-			<h1></h1>
-			<listaFavoritos />
-		  </div>
-		);
-	  }
 };
 
   

@@ -1,3 +1,5 @@
+import listaFavoritos from "../component/listaFavoritos";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -16,6 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			personajes: [],
 			vehiculos: [],
 			planetas: [],
+			listafavoritos: [],
 
 		},
 		actions: {
@@ -38,17 +41,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(err => console.error(err))
 				},
 			
-			obtenerFavorito: (name) => {
-					const store = getStore();
-					getStore ({...store,listafavoritos: [store.listafavoritos, name]})
-
-					},
+				favoriteCheck: (name) => {
+					console.log (name)
+					const favorites = getStore().listafavoritos;
+					if (favorites.indexOf(name) !== -1) {
+					  getActions().removeFavorite(name);
+					}
+					getActions().addFavorite(name);
+				  },
+				  addFavorite: (name) => {
+					setStore({ listafavoritos: getStore().listafavoritos.concat(name) });
+				  },
 
 			borrarFavorito: (borrar) => {
-				const store = getStore();
-				const listafavoritos = store.listafavoritos.filet()
-				setStore({ ...store,listafavoritos })
-			},
+				setStore({
+					listafavoritos: getStore().listafavoritos.filter((name) => name !== borrar),
+		})},
 
 			// Use getActions to call a function within a fuction
 			
